@@ -10,8 +10,6 @@ import java.util.NoSuchElementException;
  * @see ExtrinsicMinPQ
  */
 public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
-    // IMPORTANT: Do not rename these fields or change their visibility.
-    // We access these during grading to test your code.
     static final int START_INDEX = 0;
     static final int DEFAULT_LENGTH = 8;
 
@@ -25,9 +23,6 @@ public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
         itemsIndex = new HashMap<>();
     }
 
-    // Here's a method stub that may be useful. Feel free to change or remove it, if you wish.
-    // You'll probably want to add more helper methods like this one to make your code easier to read.
-    /**
      * A helper method for swapping the items at two indices of the array heap.
      */
     private void swap(int a, int b) {
@@ -64,7 +59,7 @@ public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
         return items.get(START_INDEX).getItem();
     }
 
-    @Override // Wrong invariant, index out of bounds, wrong values
+    @Override 
     public T removeMin() {
         if (size == 0) {
             throw new NoSuchElementException("PQ is empty");
@@ -87,18 +82,9 @@ public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
 
         if (index >= 0 && index < size) {
             items.get(index).setPriority(priority);
-            // if (items.get(index).getPriority()
-            //     < (items.get((index - 1) / 2)).getPriority()) {
             percolateDown(index);
             percolateUp(index);
-            // call both so that everything is in place
-            // } else {
-
-            // }
         }
-        // else {
-        //     percolateDown(index);
-        // }
     }
 
     @Override
@@ -108,7 +94,7 @@ public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
 
 
     private int indexOf(T item) {
-        if (!itemsIndex.isEmpty() && itemsIndex.containsKey(item)) { // my guess has to do that we're calling .get(null)
+        if (!itemsIndex.isEmpty() && itemsIndex.containsKey(item)) { 
             return itemsIndex.get(item);
         }
         return -1;
